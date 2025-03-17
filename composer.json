@@ -1,0 +1,33 @@
+{
+    "name": "og/optima-class",
+    "description": "class for the optima crm",
+    "version": "1.0.0",
+    "license": [
+       "LGPL-2.1-only",
+       "GPL-3.0-or-later"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Daxit\\OptimaClass\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Azzi",
+            "email": "azzi907@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/daxitzadafiya/daz-recaptcha.git"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "^11.31",
+        "daxit/recaptcha": "dev-main",
+        "cocur/slugify": "^4.6",
+        "laravel/prompts": "^0.3.2"
+    }
+}
