@@ -8,7 +8,7 @@ class PackageServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->register('Og\ReCaptcha\ReCaptchaServiceProvider');
+        $this->app->register('Daxit\ReCaptcha\ReCaptchaServiceProvider');
 
         $this->app->bind('page_data', fn() => null);
     }

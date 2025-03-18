@@ -3,7 +3,7 @@
 namespace Og\OptimaClass\Requests;
 
 use Og\OptimaClass\Components\Translate;
-use Og\ReCaptcha\Facades\ReCaptcha;
+use Daxit\ReCaptcha\Facades\ReCaptcha;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;

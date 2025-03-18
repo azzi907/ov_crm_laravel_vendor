@@ -6,7 +6,7 @@ use Og\OptimaClass\Components\Translate;
 use Og\OptimaClass\Requests\ContactUsRequest;
 use Og\OptimaClass\Service\ParamsContainer;
 use Og\OptimaClass\Traits\ConfigTrait;
-use Og\ReCaptcha\Facades\ReCaptcha;
+use Daxit\ReCaptcha\Facades\ReCaptcha;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
