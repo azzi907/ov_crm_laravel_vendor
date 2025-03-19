@@ -5,7 +5,7 @@ namespace Og\OptimaClass\Helpers;
 use Carbon\Carbon;
 use Og\OptimaClass\Components\Translate;
 use Og\OptimaClass\Traits\ConfigTrait;
-use Daxit\OptimaClass\Helpers\Functions;
+use Og\OptimaClass\Helpers\Functions;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
