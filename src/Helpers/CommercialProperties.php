@@ -505,6 +505,10 @@ class CommercialProperties
         if (isset($property['listing_agent_id'])) {
             $f_property['listing_agent_id'] = $property['listing_agent_id'];
         }
+
+        if (isset($property['listing_agent_id'])) {
+            $f_property['agent_details'] = $property['agen'];
+        }
         if (isset($property['agency_data']['commercial_name']) && !empty($property['agency_data']['commercial_name'])) {
             $f_property['agency_name'] = $property['agency_data']['commercial_name'];
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Daxit\OptimaClass\Helpers;
+namespace Og\OptimaClass\Helpers;
 
 use Og\OptimaClass\Components\Translate;
 use Og\OptimaClass\Requests\ContactUsRequest;
