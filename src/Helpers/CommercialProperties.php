@@ -842,26 +842,26 @@ class CommercialProperties
         }
 
         if (isset($property['rent']) && $property['rent'] && isset($property['st_rental']) && $property['st_rental'] && isset($property['rental_seasons']) && !empty($property['rental_seasons'])) {
-            $today = date('Y-m-d');
-            $currentPeriod = null;
-            
-            // First look for a period that includes today
-            foreach ($property['rental_seasons'] as $period) {
-                if (isset($period['period_from']) && isset($period['period_to']) && isset($period['new_price']) && !empty($period['new_price'])) {
-                    if ($today >= $period['period_from'] && $today <= $period['period_to']) {
-                        $currentPeriod = $period;
-                        break;
-                    }
-                }
-            }
-            
-            // Set the price from the found period or use first period if no current period exists
-            if ($currentPeriod) {
-                $f_property['price'] = $currentPeriod['new_price'];
-            } elseif (!empty($property['rental_seasons']) && isset($property['rental_seasons'][0]['new_price']) && !empty($property['rental_seasons'][0]['new_price'])) {
-                $f_property['price'] = $property['rental_seasons'][0]['new_price'];
+    $today = date('Y-m-d');
+    $currentPeriod = null;
+    
+    // First look for a period that includes today
+    foreach ($property['rental_seasons'] as $period) {
+        if (isset($period['period_from']) && isset($period['period_to']) && isset($period['new_price']) && !empty($period['new_price'])) {
+            if ($today >= $period['period_from'] && $today <= $period['period_to']) {
+                $currentPeriod = $period;
+                break;
             }
         }
+    }
+    
+    // Set the price from the found period or use first period if no current period exists
+    if ($currentPeriod) {
+        $f_property['price'] = $currentPeriod['new_price'];
+    } elseif (!empty($property['rental_seasons']) && isset($property['rental_seasons'][0]['new_price']) && !empty($property['rental_seasons'][0]['new_price'])) {
+        $f_property['price'] = $property['rental_seasons'][0]['new_price'];
+    }
+}
 
         if (isset($property['old_price'])) {
             $f_property['old_price'] = $property['old_price'];
