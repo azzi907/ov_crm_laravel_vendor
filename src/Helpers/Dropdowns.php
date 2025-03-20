@@ -800,6 +800,32 @@ class Dropdowns
         ];
     }
 
+    public static function getGeneralAmenities()
+    {
+        self::initialize();
+        $return_data = [];
+        $file = Functions::directory() . 'general_amenities.json';
+
+
+        $post_data = (object) [
+            'tab_in_crm' => [
+                '$in' => ['general_amenities']
+            ]
+        ];
+
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Content-Length' => strlen(json_encode($post_data, JSON_NUMERIC_CHECK)),
+            'Cache-Control' => 'no-cache'
+        ])->post(self::$node_url . 'commercialfeatures/all?user=' . self::$user, $post_data);
+
+        $data = $response->json();
+        $data = self::prepare_select_data($data, 'key', 'value');
+
+        return $data;
+    }
+
     public static function furnitures()
     {
         return [
