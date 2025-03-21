@@ -315,13 +315,19 @@ class Dropdowns
                 $query = (Object) $query;
             }else {
                 $query = [
-                    'value.en' => [
-                        '$regex' =>  ".*(?i)$search.*",
-                        '$options' => 'i' // Case-insensitive search
-                    ],
-                    'path_name' => [
-                        '$regex' =>  ".*(?i)$search.*",
-                        '$options' => 'i' // Case-insensitive search
+                    '$or' => [
+                        [
+                            'value.en' => [
+                                '$regex' => $search,
+                                '$options' => 'i' // Case-insensitive search
+                            ]
+                        ],
+                        [
+                            'path_name' => [
+                                '$regex' => $search,
+                                '$options' => 'i' // Case-insensitive search
+                            ]
+                        ]
                     ]
                 ];
                 $query = (Object) $query;
