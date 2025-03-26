@@ -122,7 +122,7 @@ class CommercialProperties
     {
         
         $get = Functions::mergeRequest( $_GET ?? []);
-        
+       
         $query = [];
         if (isset($get['auction_price_from']) && !empty($get['auction_price_from']) || isset($get['auction_price_to']) && !empty($get['auction_price_to'])) {
             $query['starting_price'] = ['$gte' => (int) $get['auction_price_from'], '$lte' => isset($get['auction_price_to']) && !empty($get['auction_price_to']) ?  (int) $get['auction_price_to'] : ''];
@@ -148,18 +148,26 @@ class CommercialProperties
             ];
         }
 
-        if(isset($get['project']) && !empty($get['project']) && isset($get['resale']) && !empty($get['resale'])){
-            $query['$and'] = [['$or' => [['project' => true], ['categories.new_construction' => true], ['categories.resale' => true]]]];
-        }else{
-            if (isset($get['project']) && !empty($get['project'])) {
-                // $query['$and'] = [['project' => ['$exists' => true]], ["project" => (bool) $get['project']]]; //change --25-01-27
-                $query['$and'] = [['$or' => [['project' => true], ['categories.new_construction' => true]]]];
-            }
+        // if(isset($get['project']) && !empty($get['project']) && isset($get['resale']) && !empty($get['resale'])){
+        //     $query['$and'] = [['$or' => [['project' => true], ['categories.new_construction' => true], ['categories.resale' => true]]]];
+        // }else{
+        //     if (isset($get['project']) && !empty($get['project'])) {
+        //         // $query['$and'] = [['project' => ['$exists' => true]], ["project" => (bool) $get['project']]]; //change --25-01-27
+        //         $query['$and'] = [['$or' => [['project' => true], ['categories.new_construction' => true]]]];
+        //     }
 
-            if (isset($get['resale']) && !empty($get['resale'])) {
-                // $query['$and'] = array_merge($query['$and'] ?? [], [['project' => ['$ne' => true]]]); //change --25-01-27
-                $query['$and'] = array_merge($query['$and'] ?? [], [['$or' => [['$and' => [['project' => ['$ne' => true]],['categories.new_construction' => false]]],['categories.resale' => true]]]]);
-            }
+        //     if (isset($get['ready']) && !empty($get['ready'])) {
+        //         // $query['$and'] = array_merge($query['$and'] ?? [], [['project' => ['$ne' => true]]]); //change --25-01-27
+        //         $query['$and'] = array_merge($query['$and'] ?? [], [['$or' => [['$and' => [['project' => ['$ne' => true]],['categories.new_construction' => false]]],['categories.resale' => true]]]]);
+        //     }
+        // }
+
+        if (isset($get['project']) && !empty($get['project'])) {
+            $query['$and'] = array_merge($query['$and'] ?? [],  [['off_plan' => true]]);
+        }
+
+        if (isset($get['ready']) && !empty($get['ready'])) {
+            $query['$and'] = array_merge($query['$and'] ?? [], [['off_plan' => false]]);
         }
 
         if (isset($get['project_on']) && !empty($get['project_on'])) {
