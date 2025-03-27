@@ -162,14 +162,17 @@ class CommercialProperties
         //     }
         // }
 
-        if (isset($get['project']) && !empty($get['project'])) {
-            $query['$and'] = array_merge($query['$and'] ?? [],  [['off_plan' => true]]);
+        if(isset($get['project']) && !empty($get['project']) && isset($get['ready']) && !empty($get['ready'])){
+            $query['$and'] = array_merge($query['$and'] ?? [], [['$or' => [['off_plan' => true],['off_plan' => false]]]]);
+        }else{
+            if (isset($get['project']) && !empty($get['project'])) {
+                $query['$and'] = array_merge($query['$and'] ?? [],  [['off_plan' => true]]);
+            }
+    
+            if (isset($get['ready']) && !empty($get['ready'])) {
+                $query['$and'] = array_merge($query['$and'] ?? [], [['off_plan' => false]]);
+            }
         }
-
-        if (isset($get['ready']) && !empty($get['ready'])) {
-            $query['$and'] = array_merge($query['$and'] ?? [], [['off_plan' => false]]);
-        }
-
         if (isset($get['project_on']) && !empty($get['project_on'])) {
             $query['$or'] = array_merge($query['$or'] ?? [], [["own" => false], ['own' => ['$exists' => false]]]);
         }
